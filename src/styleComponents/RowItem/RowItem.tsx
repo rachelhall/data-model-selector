@@ -1,5 +1,6 @@
-import React, { RefObject, useEffect, useMemo, useRef } from "react";
+import React, { RefObject, useMemo, useRef } from "react";
 import { format } from "date-fns";
+import cx from "classnames";
 
 import "./RowItem.scss";
 import Divider from "../Divider";
@@ -8,13 +9,18 @@ import { ISelectedModel } from "../../utils/useModalContext";
 interface IProps {
   item: ISelectedModel;
   index: number;
-  handleSetFocus: (index: number, result: ISelectedModel) => void;
-  focus: boolean;
-  onClick: (result: ISelectedModel, ref: RefObject<HTMLButtonElement>) => void;
+  handleSetFocus: (
+    index: number,
+    result: ISelectedModel,
+    ref: RefObject<HTMLButtonElement>
+  ) => void;
+  focus?: number;
+  selected?: ISelectedModel;
+  setSelect?: (value: boolean) => void;
 }
 
 export const RowItem: React.FC<IProps> = (props) => {
-  const { focus, onClick, item } = props;
+  const { item, focus, handleSetFocus, index } = props;
   const { id, modified, author, type } = item;
 
   const modifiedDate = useMemo(
@@ -24,18 +30,20 @@ export const RowItem: React.FC<IProps> = (props) => {
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    if (focus) {
-      buttonRef?.current?.focus();
-    }
-  }, [focus]);
-
   const handleClick = () => {
-    onClick(item, buttonRef);
+    handleSetFocus(index, item, buttonRef);
   };
 
+  const isSelected = index === focus;
+
+  if (isSelected) {
+    buttonRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const mainClass = cx("RowItem", isSelected && "RowItem--isSelected");
+
   return (
-    <button className="RowItem" ref={buttonRef} onClick={handleClick}>
+    <button className={mainClass} ref={buttonRef} onClick={handleClick}>
       <div className="RowItem--row">
         <p className="RowItem--author">
           <span style={{ fontWeight: 800, marginRight: ".5rem" }}>Author:</span>

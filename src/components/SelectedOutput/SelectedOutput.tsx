@@ -19,7 +19,7 @@ export const SelectedOutput: React.FC<IProps> = (props) => {
   );
 
   return (
-    <div>
+    <div className="SelectedOutput">
       <div className="RowItem--row">
         <p className="RowItem--author">
           <span style={{ fontWeight: 800, marginRight: ".5rem" }}>Author:</span>

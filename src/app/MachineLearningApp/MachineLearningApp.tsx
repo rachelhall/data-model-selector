@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SelectedOutput from "../../components/SelectedOutput";
+import Instructions from "../../Instructions";
 import Button from "../../styleComponents/Button";
 import Modal from "../../styleComponents/Modal";
 import { useModal } from "../../utils/useModal";
@@ -21,7 +22,9 @@ export const MachineLearningApp: React.FC<IProps> = (props) => {
       <ModalContext.Provider
         value={{ modalOpen, toggleModal, selected, setSelected }}
       >
-        <div className="Implementation">
+        <div className="App--implementation">
+          <Instructions />
+          <p className="App--heading">Search for your data model</p>
           <Button onClick={toggleModal}>Search</Button>
 
           {modalOpen && <Modal />}

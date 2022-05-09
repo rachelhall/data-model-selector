@@ -4,4 +4,16 @@
     align-items: center;
     flex: 1;
     min-height: 100vh;
+    font-family: Roobert,sans-serif;;
+}
+
+.App--heading {
+    font-size: 2rem;
+}
+
+.App--implementation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

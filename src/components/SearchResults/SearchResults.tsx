@@ -14,22 +14,20 @@ interface IProps {
 export const SearchResults: React.FC<IProps> = (props) => {
   const { results } = props;
 
-  const [focus, setFocus] = useChangeFocus(results.length);
+  const { selected, setSelected } = useContext(ModalContext);
 
-  const { setSelected } = useContext(ModalContext);
-
-  const handleClick = useCallback(
-    (result: ISelectedModel, ref: RefObject<HTMLButtonElement>) => {
-      setSelected(result);
-      ref?.current?.focus();
-    },
-    [setSelected]
-  );
+  const [focus, setFocus] = useChangeFocus(results.length, results);
 
   const handleSetFocus = useCallback(
-    (index: number, result: ISelectedModel) => {
+    (
+      index: number,
+      result: ISelectedModel,
+      ref: RefObject<HTMLButtonElement>
+    ) => {
       setFocus(index);
       setSelected(result);
+      console.log({ ref });
+      ref.current?.scrollIntoView({ behavior: "smooth" });
     },
     [setFocus, setSelected]
   );
@@ -40,12 +38,12 @@ export const SearchResults: React.FC<IProps> = (props) => {
         return (
           <div>
             <RowItem
+              index={index}
               key={item.id}
               item={item}
-              focus={index === focus}
-              index={index}
               handleSetFocus={handleSetFocus}
-              onClick={handleClick}
+              selected={selected}
+              focus={focus}
             />
           </div>
         );

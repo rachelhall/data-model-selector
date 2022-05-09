@@ -1,10 +1,11 @@
 import { useCallback, useContext, useEffect, useState } from "react";
+import { ISearchResult } from "../API";
 import { ModalContext } from "./useModalContext";
 
-export const useChangeFocus = (size: number) => {
+export const useChangeFocus = (size: number, results?: ISearchResult[]) => {
   const [currentFocus, setCurrentFocus] = useState(0);
 
-  const { toggleModal } = useContext(ModalContext);
+  const { toggleModal, setSelected } = useContext(ModalContext);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -15,10 +16,11 @@ export const useChangeFocus = (size: number) => {
         e.preventDefault();
         setCurrentFocus(currentFocus === 0 ? size - 1 : currentFocus - 1);
       } else if (e.key === "Enter") {
+        results && setSelected(results[currentFocus].item);
         toggleModal();
       }
     },
-    [currentFocus, size, toggleModal]
+    [currentFocus, results, setSelected, size, toggleModal]
   );
 
   useEffect(() => {
