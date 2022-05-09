@@ -1,0 +1,37 @@
+.SearchInput {
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   overflow: hidden;
+   max-height: 60vh;
+}
+
+.SearchInput--row {
+    display: flex;
+    margin-bottom: 2rem;
+   
+}
+
+.SearchInput--container {
+    background-color: #f5f7f9;
+    border-radius: 8px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: .75rem 1rem;
+    margin-right: 1rem;
+
+}
+
+.SearchInput--input {
+    width: 100%;
+    align-items: center;
+    color: #3b454e;
+    font-size: 1.5rem;
+    padding: 16px 24px;
+    border: none;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+    }
+}

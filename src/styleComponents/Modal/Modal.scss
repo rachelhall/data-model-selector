@@ -1,0 +1,35 @@
+
+
+.Modal {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    right: 0;
+    top: 0;
+    z-index: 2000;
+    max-height: -webkit-fill-available;
+}
+
+.Modal-overlay {
+    animation: containerAnimation 100ms linear forwards;
+    background: #222;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+@keyframes containerAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}

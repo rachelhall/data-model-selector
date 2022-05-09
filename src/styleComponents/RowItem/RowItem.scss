@@ -1,0 +1,35 @@
+.RowItem {
+    border-radius: 8px;
+    font: unset;
+    border: none;
+    flex: 1;
+    width: 100%;
+    background-color: #fff;
+    text-align: unset;
+    &:hover {
+        background-color: rgba(245,247,249,1.00);
+    }
+    &:focus {
+        background-color: rgba(245,247,249,1.00);
+        outline: none;
+       
+
+    }
+}
+
+.RowItem--row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.RowItem--id {
+    
+}
+
+.RowItem--modified {
+    font-style: italic;
+}
+
+.RowItem--author {
+    margin-right: 1rem;
+}

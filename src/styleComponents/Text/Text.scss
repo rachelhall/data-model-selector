@@ -1,0 +1,21 @@
+.Text {
+    &--small {
+        font-size: .5rem;
+    }
+    &--regular {
+        font-size: 1rem;
+    }
+    &--large {
+        font-size: 1.75rem;
+    }
+    &--thin {
+        font-weight: 200;
+    }
+    &--regular {
+        font-weight: 400;
+
+    }
+    &--bold {
+        font-weight: 800;
+    }
+}
