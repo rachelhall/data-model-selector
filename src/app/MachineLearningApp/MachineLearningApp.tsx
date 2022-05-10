@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SelectedOutput from "../../components/SelectedOutput";
 import Instructions from "../../Instructions";
 import Button from "../../styleComponents/Button";
@@ -16,6 +16,29 @@ export const MachineLearningApp: React.FC<IProps> = (props) => {
   );
 
   const { modalOpen, toggleModal } = useModal();
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.metaKey) {
+        if (e.key === "k") {
+          e.preventDefault();
+          toggleModal();
+        }
+      } else if (e.key === ("Escape" || "Esc")) {
+        if (modalOpen) {
+          toggleModal();
+        }
+      }
+    },
+    [modalOpen, toggleModal]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown, false);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown, false);
+    };
+  }, [handleKeyDown]);
 
   return (
     <div className="App">

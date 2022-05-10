@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const ModalContent: React.FC<IProps> = (props) => {
-  const { children, className } = props;
+  const { children } = props;
 
   const { toggleModal } = useContext(ModalContext);
 

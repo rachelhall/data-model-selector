@@ -22,7 +22,7 @@ export const SearchInput: React.FC<IProps> = (props) => {
 
   const sortedResults = useMemo(() => {
     const sorted = results.sort((a, b) => {
-      return a.item.type.localeCompare(b.item.type);
+      return a.item.id.localeCompare(b.item.id);
     });
 
     return sorted;
