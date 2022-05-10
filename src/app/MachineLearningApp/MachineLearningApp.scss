@@ -1,19 +1,25 @@
 .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    min-height: 100vh;
-    font-family: Roobert,sans-serif;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 100vh;
+  font-family: Roobert, sans-serif;
+  @media only screen and (max-width: 767px) {
+    padding: 1rem;
+  }
 }
 
 .App--heading {
-    font-size: 2rem;
+  font-size: 2rem;
+  @media only screen and (max-width: 767px) {
+    font-size: 1.5rem;
+  }
 }
 
 .App--implementation {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { SearchOutline, CloseCircleOutline } from "react-ionicons";
 import SearchResults from "../SearchResults";
 import "./SearchInput.scss";
-import { ISearchResult, search } from "../../API";
+import { search } from "../../API";
 import Button from "../../styleComponents/Button";
 import { ISelectedModel, ModalContext } from "../../utils/useModalContext";
 import TypeSelector from "../TypeSelector";
+import { groupBy } from "../../utils/groupBy";
 
 interface IProps {}
 
@@ -36,21 +37,24 @@ export const SearchInput: React.FC<IProps> = (props) => {
       });
   }, [filteredTypes, sortedResults]);
 
-  // const sortedResultsWithDividers = useMemo(() => {
-  //   sortedResults.forEach((result, index) => {
-  //     if (result.item.type !== sortedResults[index + 1].item.type) {
-  //       sortedResults.splice(index + 1, 0, {
-  //         item: {
-  //           id: "divider",
-  //           author: "",
-  //           modified: 0,
-  //           type: result.item.type,
-  //         },
-  //       });
-  //     }
-  //   });
-  //   return sortedResults;
-  // }, [sortedResults]);
+  const filteredResultsWithHeadings = useMemo(() => {
+    const sortedArr = filteredResults.map((item) => item["item"]);
+
+    const groupedResults = groupBy(sortedArr, "type");
+
+    const entries = Object.entries(groupedResults).flat(2);
+
+    return entries.map((item, index) => {
+      if (typeof item === "string") {
+        return {
+          id: index.toString(),
+          author: "heading",
+          modified: 0,
+          type: item,
+        } as ISelectedModel;
+      } else return item;
+    }) as ISelectedModel[];
+  }, [filteredResults]);
 
   return (
     <div className="SearchInput">
@@ -79,7 +83,7 @@ export const SearchInput: React.FC<IProps> = (props) => {
         filteredTypes={filteredTypes}
         setFilteredTypes={setFilterTypes}
       />
-      <SearchResults results={filteredResults} />
+      <SearchResults results={filteredResultsWithHeadings} />
     </div>
   );
 };

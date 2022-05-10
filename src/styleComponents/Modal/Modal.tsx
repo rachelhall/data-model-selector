@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import SearchInput from "../../components/SearchInput";
-import SearchResults from "../../components/SearchResults";
 import { ModalContext } from "../../utils/useModalContext";
 
 import ModalContent from "../ModalContent";

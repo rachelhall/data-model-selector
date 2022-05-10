@@ -1,8 +1,8 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { ISearchResult } from "../API";
-import { ModalContext } from "./useModalContext";
+import { ISelectedModel, ModalContext } from "./useModalContext";
 
-export const useChangeFocus = (size: number, results?: ISearchResult[]) => {
+export const useChangeFocus = (size: number, results?: ISelectedModel[]) => {
   const [currentFocus, setCurrentFocus] = useState(0);
 
   const { toggleModal, setSelected } = useContext(ModalContext);
@@ -16,7 +16,7 @@ export const useChangeFocus = (size: number, results?: ISearchResult[]) => {
         e.preventDefault();
         setCurrentFocus(currentFocus === 0 ? size - 1 : currentFocus - 1);
       } else if (e.key === "Enter") {
-        results && setSelected(results[currentFocus].item);
+        results && setSelected(results[currentFocus]);
         toggleModal();
       }
     },

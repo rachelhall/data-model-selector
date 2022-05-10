@@ -1,11 +1,18 @@
 .TypeSelector {
-    display: flex;
+  display: flex;
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .TypeSelector--heading {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .TypeSelector--button {
-    margin: 0 1rem 2rem 0;
+  margin: 0 1rem 2rem 0;
+  @media only screen and (max-width: 767px) {
+    padding: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
 }

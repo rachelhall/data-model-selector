@@ -1,49 +1,60 @@
-
-
 .ModalContent {
-    animation: contentAnimation 200ms ease-out 100ms forwards;
-    background: #fff;
-    border-radius: 1.2rem;
-    box-shadow: 0 0.4rem 1.6rem -0.4rem #999;
-    margin: 1rem;
-    max-height: 60vh;
-    max-width: 90vw;
-    min-width: 60rem;
-    opacity: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 6rem;
-    position: relative;
-    z-index: 5;
-    transition:all .25s;
-    
+  animation: contentAnimation 200ms ease-out 100ms forwards;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 0.4rem 1.6rem -0.4rem #999;
+  margin: 1rem;
+  max-height: 60vh;
+  max-width: 70vw;
+  min-width: 60rem;
+  opacity: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 6rem;
+  position: relative;
+  z-index: 5;
+  transition: all 0.25s;
 
+  @media only screen and (max-width: 767px) {
+    min-width: unset;
+    padding: 1rem;
+    max-height: unset;
+  }
+  min-width: unset;
+  @media only screen and (max-width: 1200px) {
+  }
 }
 
 .ModalContent--fullScreen {
-    height: 100vh;
-    width: 100vw;
-    max-height: unset;
-    max-width: unset;
-    border-radius: 0;
-    margin: 0;
-    max-height: -webkit-fill-available;
+  height: 100vh;
+  width: 100vw;
+  max-height: unset;
+  max-width: unset;
+  border-radius: 0;
+  margin: 0;
+  max-height: -webkit-fill-available;
 }
 
 @keyframes contentAnimation {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
 
 .ModalContent--closeBtn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 
+  @media only screen and (max-width: 767px) {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    top: unset;
+    right: unset;
+  }
 }
-
