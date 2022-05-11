@@ -7,6 +7,7 @@ import Button from "../../styleComponents/Button";
 import { ISelectedModel, ModalContext } from "../../utils/useModalContext";
 import TypeSelector from "../TypeSelector";
 import { groupBy } from "../../utils/groupBy";
+import SortAlphabeticalSelector from "../SortAlphabeticalSelector";
 
 interface IProps {}
 
@@ -20,13 +21,17 @@ export const SearchInput: React.FC<IProps> = (props) => {
 
   const results = search(input);
 
+  const [sortDirection, setSortDirection] = useState<"ASC" | "DESC">("DESC");
+
   const sortedResults = useMemo(() => {
     const sorted = results.sort((a, b) => {
-      return a.item.id.localeCompare(b.item.id);
+      if (sortDirection === "DESC") {
+        return a.item.id.localeCompare(b.item.id);
+      } else return b.item.id.localeCompare(a.item.id);
     });
 
     return sorted;
-  }, [results]);
+  }, [results, sortDirection]);
 
   const filteredResults = useMemo(() => {
     if (filteredTypes.length === 0) {
@@ -78,11 +83,19 @@ export const SearchInput: React.FC<IProps> = (props) => {
         </div>
         <Button onClick={toggleModal}>Select</Button>
       </div>
-      <TypeSelector
-        results={results}
-        filteredTypes={filteredTypes}
-        setFilteredTypes={setFilterTypes}
-      />
+      {results.length > 0 && (
+        <div className="SearchInput--row">
+          <TypeSelector
+            results={results}
+            filteredTypes={filteredTypes}
+            setFilteredTypes={setFilterTypes}
+          />
+          <SortAlphabeticalSelector
+            sortDirection={sortDirection}
+            setSortDirection={setSortDirection}
+          />
+        </div>
+      )}
       <SearchResults results={filteredResultsWithHeadings} />
     </div>
   );

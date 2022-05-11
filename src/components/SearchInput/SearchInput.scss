@@ -12,6 +12,7 @@
 .SearchInput--row {
   display: flex;
   margin-bottom: 2rem;
+  justify-content: space-between;
   @media only screen and (max-width: 767px) {
     flex-direction: column;
   }

@@ -24,7 +24,7 @@ export const TypeSelector: React.FC<IProps> = (props) => {
       }
     });
 
-    return uniqueTypes;
+    return uniqueTypes.sort();
   }, [results]);
 
   const handleClick = (type: string) => {

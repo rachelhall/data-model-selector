@@ -39,7 +39,7 @@ export const SearchResults: React.FC<IProps> = (props) => {
           return (
             <div>
               {item.author === "heading" ? (
-                <RowHeading item={item} />
+                <RowHeading item={item} key={item.id} />
               ) : (
                 <RowItem
                   index={index}
